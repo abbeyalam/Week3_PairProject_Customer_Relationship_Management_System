@@ -17,7 +17,7 @@ public class Employee extends Person implements Billable {
     }
 
     public Employee(String firstName, String lastName, String title, double salary) {
-        super(firstName,lastName);
+        super(firstName, lastName);
         this.title = title;
         this.salary = salary;
     }
@@ -28,7 +28,7 @@ public class Employee extends Person implements Billable {
     }
 
     public void raiseSalary(double percentage) {
-        if( percentage > 0) {
+        if (percentage > 0) {
             this.salary += salary * percentage / 100;
         }
     }
@@ -70,6 +70,14 @@ public class Employee extends Person implements Billable {
 
     @Override
     public double getBalanceDue(Map<String, Double> servicesRendered) {
-        return 0;
+
+        double value = servicesRendered.get("Walking") / 2.0;
+        servicesRendered.put("Walking",value);
+        double sum = 0;
+        for (Map.Entry<String, Double> price : servicesRendered.entrySet()) {
+            sum += price.getValue();
+
+        }
+        return sum;
     }
 }
