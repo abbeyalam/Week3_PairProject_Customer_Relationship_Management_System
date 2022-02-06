@@ -47,8 +47,23 @@ public class EmployeeTests {
         map.put("Walking",2.0);
         map.put("Sitting",3.0);
 
-        Assert.assertEquals(5.0, testEmployee.getBalanceDue(map),0.1);
+        Assert.assertEquals("The test should return added values",5.0, testEmployee.getBalanceDue(map),0.1);
 
+        //pass null value
+        Assert.assertEquals("If parameter is null, return 0", 0, testEmployee.getBalanceDue(null),0.1);
+
+        //map with null value
+        map.put(null,null);
+        Assert.assertEquals("If element is null, add other values and return", 5.0, testEmployee.getBalanceDue(map),0.1);
+
+        map.put("",4.);
+        Assert.assertEquals("If key is empty, don't add value", 5.0, testEmployee.getBalanceDue(map),0.1);
+
+        map.put("Stuff",null);
+        Assert.assertEquals("If value is null don't break program", 5.0, testEmployee.getBalanceDue(map),0.1);
+
+        map.put(null,4.0);
+        Assert.assertEquals("If key is null, don't add value", 5.0, testEmployee.getBalanceDue(map),0.1);
     }
 
 }
